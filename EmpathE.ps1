@@ -62,7 +62,7 @@ function EmpathETopicsMenu {
     )
     $i = 0;
     Do{
-        Write-Host "$($i). $($topics[$i+1])"
+        Write-Host "$($i+1). $($topics[$i])" -ForegroundColor Blue
         $i++
     }Until($i -ge $topics.count)
 }
@@ -81,7 +81,7 @@ function EmpathEFreeVent {
         "I am here for you, no matter what. Your emotions are safe with me and I encourage you to share them openly.",
         "You don't have to hold back or worry about burdening me with your emotions. I am here to listen and support you through it all.",
         "There is no need to feel ashamed or embarrassed. I am here to offer a listening ear and a safe space for you to express your feelings."
-        )
+    )
     $openUpPromptsArr = @(
         "I'm here to listen whenever you're ready to talk.",
         "I'm here for you and I'm all ears. Is there anything on your mind that you'd like to share?",
@@ -92,9 +92,128 @@ function EmpathEFreeVent {
         "I'm all ears, $($usr). Feel free to speak your mind.", 
         "You have my undivided attention, $($usr). What's weighing on you?"
     )
+    $ventEmpathyArr = @(
+        "I can only imagine how difficult this must be for you.",
+        "I hear you, and I am sorry you have to go through this.",
+        "It takes a lot of strength to keep going despite what life throws at you.",
+        "I'm here for you, and I'm listening.",
+        "That sounds incredibly challenging. You're doing a great job just by being here.",
+        "It's okay to feel overwhelmed. I'm here to help you through it.",
+        "I understand how hard it can be to deal with these feelings.",
+        "You are not alone. I am here to support you in any way I can.",
+        "You're incredibly brave for facing this head-on.",
+        "I'm sorry you have to deal with this, but I'm here to support you.",
+        "I'm here for you, no matter what.",
+        "I'm proud of you for opening up about how you're feeling.",
+        "It's okay to not be okay. I'm here to help you get through it.",
+        "I'm here to hold space for you and support you through whatever you're going through.",
+        "I can't imagine how tough this must be for you, but I'm here to support you through it.",
+        "You're not alone in this. I'm here to support you every step of the way.",
+        "I'm sorry that you're going through this, but I'm here to help you get through it.",
+        "It takes a lot of courage to open up about your feelings. I'm here to listen and support you.",
+        "You're not alone in this. I'm here to help you get through it.",
+        "I'm here to support you in any way I can. You don't have to go through this alone.",
+        "It sounds like this is really tough for you.",
+        "I can only imagine how difficult this must be for you.",
+        "I'm sorry to hear that you're going through this.",
+        "I hear you, and I'm here to support you.",
+        "It's understandable to feel that way given what you've been through.",
+        "I'm here for you and we can work through this together.",
+        "It's okay to feel however you're feeling right now.",
+        "That's a lot to handle, and it's okay to take time to process it all.",
+        "You're not alone, and I'm here to listen and support you.",
+        "It's brave of you to share your feelings and experiences with me.",
+        "I can't imagine how challenging this must be for you.",
+        "I'm here to help you navigate through this.",
+        "It's completely understandable to feel overwhelmed.",
+        "Your feelings are valid and important.",
+        "It's okay to take time for yourself and focus on your own needs."
+    )
+
+    $ventQuestionsArr = @(
+        "Can you tell me more about how that makes you feel?",
+        "How long have you been feeling this way?",
+        "Do you feel like there are any specific triggers for your emotions?",
+        "Have you talked to anyone else about these feelings?",
+        "What kind of support would be helpful for you right now?",
+        "Is there anything you're afraid of that's preventing you from taking action?",
+        "What steps do you think you can take to start feeling better?",
+        "What would you say to a friend who was experiencing these same feelings?",
+        "What do you think might help you in this situation?",
+        "What would be the first step you could take towards feeling better?",
+        "What could you do to take care of yourself right now?",
+        "Is there anything specific that triggers these feelings?",
+        "What are some positive things that you have in your life?",
+        "Have you considered talking to someone close to you about how you feel?",
+        "What do you think could be holding you back from feeling better?",
+        "Is there anything you can do to change the situation that is causing these feelings?",
+        "What would you say to a friend who was in your position?",
+        "How do you feel about that?",
+        "Can you tell me more about what's going on?",
+        "How have you been coping with this?",
+        "What are you hoping to achieve by talking with me today?",
+        "What do you think might be a way to move forward from here?",
+        "What would you like to change about your situation?",
+        "How do you think others perceive you in this situation?",
+        "What are some of the things you're grateful for in your life?"
+    )
+    
+    $nextStepsArr = @(
+        "What would you like to do next?",
+        "What's on your mind now?",
+        "How do you want to move forward?",
+        "What steps do you think you can take now?",
+        "What are some things that might help you feel better?",
+        "How do you want to work through this?",
+        "What do you think is the next best step for you?",
+        "What would be the most helpful thing for you right now?",
+        "What can you do to take care of yourself right now?",
+        "What can you do to feel better?"
+    )
+
+    $encouragementArr = @(
+        "I'm proud of you for sharing your feelings, $($usr).",
+        "It takes a lot of strength to open up like you just did, $($usr).",
+        "You're making progress by talking through your emotions, keep it up, $($usr).",
+        "Sharing your feelings can be difficult, but it's an important step in moving forward, $($usr).",
+        "Thank you for being brave enough to share your emotions with me, $($usr)."
+        "You're doing great, $($usr)! Keep going!",
+        "I'm proud of you for sharing, $($usr). You're making progress!",
+        "Thank you for trusting me with your feelings, $($usr). It takes a lot of courage to do that.",
+        "You're not alone, $($usr). I'm here to support you.",
+        "You're doing an amazing job, $($usr). Keep up the good work!",
+        "I appreciate you opening up to me, $($usr). It takes strength to express your emotions.",
+        "You're taking important steps towards healing, $($usr).",
+        "It's okay to feel overwhelmed sometimes, $($usr). Just know that you're not alone.",
+        "I hear you, $($usr), and I'm here to support you in any way I can.",
+        "You are brave for confronting your emotions, $($usr).",
+        "Sharing your feelings is a huge step, $($usr), and I'm proud of you for taking it.", 
+        "Remember that you are loved, $($usr), and your feelings are valid.",
+        "You're making progress, $($usr), even if it may not feel like it.",
+        "I can see that by talking to me, you're really putting in effort, $($usr), and I hope it's paying off.",
+        "It's okay to take things one day at a time, $($usr). You're doing great.",
+        "You're taking an important step towards healing, $($usr), and I'm here to support you every step of the way.",
+        "You're not alone, $($usr), and things will get better. Just keep moving forward.",
+        "Remember to be kind to yourself, $($usr). You're doing the best you can.",
+        "You're making progress, even if it's not immediately noticeable, $($usr). Keep going!",
+        "You're an inspiration, $($usr). What you've shared with me is not easy. I hope getting it off your chest has been cathartic for you."
+    )
+
+
     $safeSpace = Get-Random $safeSpaceArr
     $openUp = Get-Random $openUpPromptsArr
-    Write-Host "$safeSpace`n$openUp"
+    $ventEmpathy = Get-Random $ventEmpathyArr
+    $ventQuestion = Get-Random $ventQuestionsArr
+    $ventEncouragement = Get-Random $encouragementArr
+    $nextSteps = Get-Random $nextStepsArr
+    Write-Host "$safeSpace`n$openUp" -ForegroundColor Cyan
+    Read-Host
+    Write-Host "$ventEmpathy`n$ventQuestion" -ForegroundColor Cyan
+    Read-Host
+    Write-Host "$ventEncouragement`n$nextSteps" -ForegroundColor Cyan
+    Read-Host
+
+
 
 }
 ##########################################################################################################################
@@ -112,7 +231,6 @@ $greetArr = @(
     "Hey",
     "Hail",
     "Salutations",
-    "Yo",
     "Howdy",
     "Hi-ya",
     "Peace be upon you",
@@ -308,7 +426,7 @@ $personalWelcomeArr = @(
     "It's wonderful to have you here, $($usr). I'm here to support you in your journey.",
     "Welcome, $($usr). This is a safe and welcoming space for you to express yourself freely.",
     "Hello, $($usr). I'm glad you're here with us today. I'm here to listen and support you.",
-    "Welcome to our community, $($usr). I'm here to help you navigate life's ups and downs.",
+    "Welcome, $($usr). I'm here to help you navigate life's ups and downs.",
     "It's a pleasure to have you here, $($usr). Let's explore your thoughts and emotions together.",
     "Welcome to your safe space, $($usr). I'm here to support and uplift you on your journey.",
     "Hi, $($usr). This is a place where you can be yourself, no judgment or shame.",
@@ -407,6 +525,65 @@ $counselOptionsArr = @(
     "The choice is yours, $($usr). We can delve into a specific topic, or you can simply let go and let me hold space for you. What do you prefer?",
     "$($usr), you can decide how you'd like to proceed. Would you like to pick a specific topic, or would you rather let go and let me hold space for you?"
 )
+
+$genInspoquotesArr = @(
+    "Eckhart Tolle once said in his book 'The Power of Now' (1997), 'Realize deeply that the present moment is all you ever have.'",
+    "Ram Dass once said, 'We're all just walking each other home.'",
+    "Marcus Aurelius wrote in his book 'Meditations' (180 AD), 'Very little is needed to make a happy life; it is all within yourself, in your way of thinking.'",
+    "Epictetus said, 'It's not what happens to you, but how you react to it that matters.'",
+    "Allan Watts once said, 'This is the real secret of life -- to be completely engaged with what you are doing in the here and now. And instead of calling it work, realize it is play.'",
+    "Jesus Christ once said, 'Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.'",
+    "Rumi once said, 'The wound is the place where the light enters you.'",
+    "Thich Nhat Hanh once said, 'The present moment is filled with joy and happiness. If you are attentive, you will see it.'",
+    "Maya Angelou said, 'I can be changed by what happens to me. But I refuse to be reduced by it.'",
+    "William James once said, 'The greatest discovery of my generation is that a human being can alter their life by altering their attitudes.'",
+    "Lao Tzu said, 'Nature does not hurry, yet everything is accomplished.'",
+    "Anne Frank wrote in her diary, 'Think of all the beauty still left around you and be happy.'",
+    "Joseph Campbell once said, 'We must be willing to let go of the life we have planned, so as to have the life that is waiting for us.'",
+    "May Sarton said, 'Loneliness is the poverty of self; solitude is the richness of self.'",
+    "Ralph Waldo Emerson once said, 'The only way to have a friend is to be one.'",
+    "Jack Kornfield once said, 'In the end, just three things matter: How well we have lived. How well we have loved. How well we have learned to let go.'",
+    "Henry David Thoreau wrote in his book 'Walden' (1854), 'I went to the woods because I wished to live deliberately, to front only the essential facts of life, and see if I could not learn what it had to teach, and not, when I came to die, discover that I had not lived.'",
+    "Mary Oliver once wrote, 'Tell me, what is it you plan to do with your one wild and precious life?'",
+    "Kahlil Gibran once said, 'Your living is determined not so much by what life brings to you as by the attitude you bring to life; not so much by what happens to you as by the way your mind looks at what happens.'"
+    "Epictetus reminds us in the 'Enchiridion' (135 AD) that 'It's not what happens to you, but how you react to it that matters.'",
+    "As Marcus Aurelius wrote in 'Meditations' (170-180 AD), 'The happiness of your life depends upon the quality of your thoughts.'",
+    "'What you stay focused on will grow.' Ram Dass, 'Be Here Now' (1971)",
+    "According to Alan Watts, 'The only way to make sense out of change is to plunge into it, move with it, and join the dance.' ('The Wisdom of Insecurity', 1951)",
+    "Eckhart Tolle reminds us in 'A New Earth' (2005) that 'The primary cause of unhappiness is never the situation but thought about it.'",
+    "'No man is free who is not a master of himself.' Epictetus, 'The Discourses' (108 AD)",
+    "'It is not that we have a short time to live, but that we waste a lot of it.' Seneca, 'On the Shortness of Life' (49 AD)",
+    "According to Marcus Aurelius, 'Very little is needed to make a happy life; it is all within yourself, in your way of thinking.' ('Meditations', 170-180 AD)",
+    "Zeno, the founder of Stoicism, reminds us in 'Fragments' (301 BC) that 'Man conquers the world by conquering himself.'",
+    "'When you realize nothing is lacking, the whole world belongs to you.' Lao Tzu, 'Tao Te Ching' (6th century BC)",
+    "'The present moment is the only time over which we have dominion.' Thich Nhat Hanh, 'The Heart of the Buddha's Teaching' (1998)",
+    "'You are not a drop in the ocean. You are the entire ocean in a drop.' Rumi, 'The Essential Rumi' (13th century)",
+    "'The truth is, of course, that there is no journey. We are arriving and departing all at the same time.' David Bowie",
+    "According to Alan Watts, 'The only Zen you can find on the tops of mountains is the Zen you bring up there.' ('The Way of Zen', 1957)",
+    "'The unexamined life is not worth living.' Socrates, 'The Apology' (399 BC)",
+    "'You can't stop the waves, but you can learn to surf.' Jon Kabat-Zinn, 'Wherever You Go, There You Are' (1994)",
+    "Eckhart Tolle reminds us in 'The Power of Now' (1997) that 'Realize deeply that the present moment is all you ever have.'",
+    "According to Ram Dass, 'The quieter you become, the more you can hear.' ('The Only Dance There Is', 1974)",
+    "'What we think, we become.' Buddha",
+    "Epictetus reminds us in 'The Discourses' (108 AD) that 'It is not so much what happens to you as how you think about what happens.'",
+    "'The greatest glory in living lies not in never falling, but in rising every time we fall.' Nelson Mandela",
+    "Voltaire once said, 'Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.'",
+    "Descartes once said, 'I think, therefore I am.' (1637, Meditations on First Philosophy)",
+    "Sartre once said, 'Man is condemned to be free.' (1943, Being and Nothingness)",
+    "Jung once said, 'Your vision will become clear only when you can look into your own heart. Who looks outside, dreams; who looks inside, awakes.'",
+    "Voltaire once said, 'We must cultivate our own garden.' (1759, Candide)",
+    "Sartre once said, 'Freedom is what you do with what's been done to you.' (1943, Being and Nothingness)",
+    "Jung once said, 'The greatest and most important problems of life are all fundamentally insoluble. They can never be solved but only outgrown.'",
+    "Socrates (c. 470/469 BC - 399 BC) said: 'The unexamined life is not worth living.'",
+    "Plato (c. 428/427 BC - 348/347 BC) said: 'We can easily forgive a child who is afraid of the dark; the real tragedy of life is when men are afraid of the light.'",
+    "Aristotle (384 - 322 BC) said: 'Pleasure in the job puts perfection in the work.'",
+    "Epictetus (c. 50 - 135 AD) said: 'It's not what happens to you, but how you react to it that matters.'",
+    "Seneca (4 BC - 65 AD) said: 'It is not that we have a short time to live, but that we waste a lot of it.'",
+    "Marcus Aurelius (121 - 180 AD) said: 'The happiness of your life depends upon the quality of your thoughts.'",
+    "Confucius (551 - 479 BC) said: 'Everything has beauty, but not everyone sees it.'",
+    "Lao Tzu (6th century BC) said: 'Nature does not hurry, yet everything is accomplished.'",
+    "The Buddha (c. 563/480 - c. 483/400 BC) said: 'Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.'"
+    )
 
 $greeting = Get-Random $greetArr
 $firstSentence = Get-Random $firstSentencesArr
