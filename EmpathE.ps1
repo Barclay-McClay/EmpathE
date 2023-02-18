@@ -7,13 +7,13 @@
 |________|[___||__||__]| ;.__/ \'-;__/\__/[___]|__]|________| 
                       [__|                                    
 #>
-. ./.vars.ps1
+
 ##########################################################################################################################
 function EmpathEMainMenu {
     Do{
         Write-Host "1. View topics" -ForegroundColor Blue
         Write-Host "2. Free-form vent" -ForegroundColor Blue
-        Write-Host "3. About EmpathE"
+        Write-Host "3. About EmpathE" -ForegroundColor DarkBlue
         Write-Host "Please input the number listed next to the option you wish to choose. You can go back to this menu at any time by typing 'menu'." -ForegroundColor DarkCyan
         $counselChoice = Read-Host
         switch ($counselChoice) {
