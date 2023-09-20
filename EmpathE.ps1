@@ -603,6 +603,24 @@ $privacyArr = @(
     "Rest assured that your privacy is safe with me, as I do not store any personal information from our conversations"
 )
 
+########################################################################################################################################################
+
+$greeting = Get-Random $greetArr
+$firstSentence = Get-Random $firstSentencesArr
+$firstPunc = Get-Random $puncArr
+$nameQ = Get-Random $namePromptsArr
+$imEmpathE = Get-Random $IamArr
+$privacyAssurance = Get-Random $privacyArr
+$introduction = "$greeting$firstPunc $imEmpathE $firstSentence`n$nameQ"
+
+Write-Host "$introduction" -ForegroundColor Cyan
+Write-Host "($privacyAssurance)" -ForegroundColor DarkCyan
+
+$usr = Read-Host
+
+########################################################################################################################################################
+
+
 $personalWelcomeArr = @(
     "It's a pleasure to have you here, $($usr). Please know that this is a safe and welcoming space for you to share your thoughts and feelings.",
     "$($usr), welcome. It's always a pleasure to be here for you and to provide a safe, non-judgmental space to express yourself.",
@@ -793,23 +811,12 @@ $genInspoquotesArr = @(
 
 
 
-$greeting = Get-Random $greetArr
-$firstSentence = Get-Random $firstSentencesArr
-$firstPunc = Get-Random $puncArr
-$nameQ = Get-Random $namePromptsArr
-$imEmpathE = Get-Random $IamArr
-$privacyAssurance = Get-Random $privacyArr
-$introduction = "$greeting$firstPunc $imEmpathE $firstSentence`n$nameQ"
+
 
 $personalWelcome = Get-Random $personalWelcomeArr
-
 $limitations = Get-Random $limitationsArr
 $limitationApology = Get-Random $limitationApologyArr
 $counselOptions = Get-Random $counselOptionsArr
-
-Write-Host "$introduction" -ForegroundColor Cyan
-Write-Host "($privacyAssurance)" -ForegroundColor DarkCyan
-$usr = Read-Host
 
 Write-Host "$personalWelcome" -ForegroundColor Cyan
 Write-Host "$limitations`n$limitationApology`n" -ForegroundColor Cyan
